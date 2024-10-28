@@ -32,8 +32,8 @@ class ListaEncadeadaCircular:
     def is_empty(self): 
         return self._head == None
 
-    def adiciona_membro(self, item):
-        novo_noh = Noh(item)
+    def adiciona_membro(self, membro):
+        novo_noh = Noh(membro)
         if self.is_empty():
             self._head = novo_noh
             self._responsavel = novo_noh
@@ -47,7 +47,6 @@ class ListaEncadeadaCircular:
     def proximo_responsavel(self):
         if self.is_empty():
             raise ExceptionListaEncadeadaCircular("A lista está vazia")
-        
         if self._responsavel.getNext() == None :
             self._responsavel = self._head
         else:
@@ -65,7 +64,7 @@ class ListaEncadeadaCircular:
             else:
                 anterior = atual
                 atual = atual.getNext()
-            if(atual.getNext() == None and encontrou == False):
+            if((atual.getNext is None) and (encontrou == False)):
                 raise ValueError(f"Não tem nenhum participante com o nome : {nome}")
         if anterior == None:
             self._head = atual.getNext()
@@ -82,7 +81,7 @@ class ListaEncadeadaCircular:
         while atual != None:
             result += str(atual.getData().getName()) + ", "
             atual = atual.getNext()    
-        result += f'] tamanho: {self._tamanho} \n'
+        result += f'] tamanho: {self._tamanho}'
         return result
 
 class Membro:
@@ -96,46 +95,3 @@ class Membro:
     def getEmail(self):
         return self._email
      
-
-lista = ListaEncadeadaCircular()
-abel = Membro("Abel","Abel@gmail")
-print("Passo 1:")
-lista.adiciona_membro(abel)
-lista.show()
-
-print("Passo 2:")
-print(lista.proximo_responsavel())
-
-print("Passo 3:")
-bia = Membro("Bia", "bia@gmail")
-lista.adiciona_membro(bia)
-lista.show()
-
-print("passo 4:")
-print(lista.proximo_responsavel())
-
-print("passo 5:")
-print(lista.proximo_responsavel())
-
-print("passo 6:")
-carlos = Membro("Carlos","Carlos@gmail")
-lista.adiciona_membro(carlos)
-lista.show()
-
-print("passo 7:")
-print(lista.proximo_responsavel())
-
-print("Passo 8:")
-print(lista.proximo_responsavel())
-
-print("Passo 9:")
-davi = Membro("davi","davi@gmail")
-lista.adiciona_membro(davi)
-lista.show()
-
-print("Passo 10:")
-#lista.remover_membro("Bruno")
-
-print("Passo 11:")
-print(lista.proximo_responsavel())
-
